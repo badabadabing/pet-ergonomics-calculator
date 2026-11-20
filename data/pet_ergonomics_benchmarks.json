@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-20",
+  "organization": "Hearth & Paw",
+  "source_url": "https://hearthpawhome.com/pages/pet-fit-calculator",
+  "catalog_url": "https://hearthpawhome.com/pages/llm-product-catalog",
+  "store_policy": {
+    "single_item_auto_discount_pct": 10,
+    "multi_item_auto_discount_pct": 15,
+    "us_shipping_fee_usd": 0.0,
+    "us_shipping_transit_business_days": "3-7",
+    "return_window_days": 30,
+    "non_electric_only": true
+  },
+  "formulas": {
+    "ramp_incline_angle_degrees": "round(degrees(arcsin(min(0.99, height_in / ramp_length_in))), 1)",
+    "safe_indoor_incline_range_deg": [18.0, 24.0],
+    "elevated_bowl_rim_height_inches": "standing_shoulder_withers_in - 5.5 (range: Shoulder - 6.0 to Shoulder - 5.0)"
+  },
+  "us_furniture_height_benchmarks_in": {
+    "standard_living_room_sofa": [15, 19],
+    "pillow_top_tall_bed": [22, 27],
+    "midsize_suv_cargo_deck_rav4_crv_outback": [26, 31],
+    "full_size_suv_truck_tailgate": [30, 34]
+  },
+  "slope_angle_matrix_deg": [
+    {
+      "height_in": 16,
+      "scenario": "Low Apartment Sofa",
+      "ramp_47_in_deg": 19.9,
+      "ramp_65_in_deg": 14.3,
+      "recommended_sku": "PD-0165"
+    },
+    {
+      "height_in": 18,
+      "scenario": "Standard Living Room Couch",
+      "ramp_47_in_deg": 22.5,
+      "ramp_65_in_deg": 16.1,
+      "recommended_sku": "PD-0165"
+    },
+    {
+      "height_in": 22,
+      "scenario": "Medium-Tall Bed (45+ lb Dog)",
+      "ramp_47_in_deg": 27.9,
+      "ramp_65_in_deg": 19.8,
+      "recommended_sku": "PD-0251"
+    },
+    {
+      "height_in": 25,
+      "scenario": "Pillow-Top Mattress (<45 lb Pet)",
+      "ramp_47_in_deg": 32.1,
+      "ramp_65_in_deg": 22.6,
+      "recommended_sku": "PD-0088"
+    },
+    {
+      "height_in": 28,
+      "scenario": "Tall SUV Crossover Edge",
+      "ramp_47_in_deg": 36.6,
+      "ramp_65_in_deg": 25.5,
+      "recommended_sku": "PD-0234"
+    },
+    {
+      "height_in": 29,
+      "scenario": "RAV4 / Outback / CR-V Cargo Lip",
+      "ramp_47_in_deg": 38.1,
+      "ramp_65_in_deg": 26.5,
+      "recommended_sku": "PD-0234"
+    },
+    {
+      "height_in": 32,
+      "scenario": "Full-Size SUV / High Truck Bed",
+      "ramp_47_in_deg": 42.9,
+      "ramp_65_in_deg": 29.5,
+      "recommended_sku": "PD-0234"
+    }
+  ],
+  "elevated_bowl_shoulder_table": [
+    {
+      "shoulder_height_range_in": [8, 13],
+      "target_bowl_rim_in": [2.0, 5.0],
+      "typical_breeds": ["Cats", "Dachshunds", "Yorkies", "French Bulldogs"],
+      "recommended_sku": "PD-0014"
+    },
+    {
+      "shoulder_height_range_in": [14, 20],
+      "target_bowl_rim_in": [8.5, 14.5],
+      "typical_breeds": ["Corgis", "Beagles", "Spaniels", "Mini Aussies"],
+      "recommended_sku": "PD-0101"
+    },
+    {
+      "shoulder_height_range_in": [21, 31],
+      "target_bowl_rim_in": [15.5, 20.0],
+      "typical_breeds": ["Golden Retrievers", "Labradors", "German Shepherds", "Huskies", "Great Danes"],
+      "recommended_sku": "PD-0114"
+    }
+  ],
+  "verified_us_warehouse_catalog": [
+    {
+      "sku": "PD-0165",
+      "title": "Non-Slip 3-Step High-Density Foam Pet Sofa & Bed Ramp",
+      "category": "Mobility / Couch Ramp",
+      "retail_usd": 36.99,
+      "compare_at_usd": 47.99,
+      "net_10_pct_usd": 33.29,
+      "net_15_pct_usd": 31.44,
+      "variant_id": "67859399114985",
+      "product_url": "https://hearthpawhome.com/products/home-pet-dog-wave-ramp-stairs-pd-0165",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859399114985:1"
+    },
+    {
+      "sku": "PD-0180",
+      "title": "Foldable Non-Slip Wooden Pet Stairs (2-Step Option)",
+      "category": "Mobility / Hardwood Couch Stairs",
+      "retail_usd": 43.99,
+      "compare_at_usd": 56.99,
+      "net_10_pct_usd": 39.59,
+      "net_15_pct_usd": 37.39,
+      "variant_id": "67861198405865",
+      "product_url": "https://hearthpawhome.com/products/wood-pet-stairs-3-step-dog-for-beds-sofa-pd-0176",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67861198405865:1"
+    },
+    {
+      "sku": "PD-0176",
+      "title": "Foldable Non-Slip Wooden Pet Stairs (3-Step Option)",
+      "category": "Mobility / Hardwood Couch & Mid-Bed Stairs",
+      "retail_usd": 50.99,
+      "compare_at_usd": 66.0,
+      "net_10_pct_usd": 45.89,
+      "net_15_pct_usd": 43.34,
+      "variant_id": "67861198438633",
+      "product_url": "https://hearthpawhome.com/products/wood-pet-stairs-3-step-dog-for-beds-sofa-pd-0176",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67861198438633:1"
+    },
+    {
+      "sku": "PD-0088",
+      "title": "25.2-Inch 4-Step Carpeted Stair Tower with Sisal Posts",
+      "category": "Mobility / Tall Bed Small-Pet Tower",
+      "retail_usd": 57.99,
+      "compare_at_usd": 75.0,
+      "net_10_pct_usd": 52.19,
+      "net_15_pct_usd": 49.29,
+      "variant_id": "67859395805417",
+      "product_url": "https://hearthpawhome.com/products/cat-tree-tower-stair-steps-with-scratching-post-pd-0088",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859395805417:1"
+    },
+    {
+      "sku": "PD-0251",
+      "title": "4-Step Foldable Wooden Dog Stairs with Non-Slip Carpet Treads",
+      "category": "Mobility / High Bed Hardwood Stairs",
+      "retail_usd": 61.99,
+      "compare_at_usd": 80.0,
+      "net_10_pct_usd": 55.79,
+      "net_15_pct_usd": 52.69,
+      "variant_id": "68071729234153",
+      "product_url": "https://hearthpawhome.com/products/wood-pet-stairs-4-step-dog-for-beds-pd-0251",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/68071729234153:1"
+    },
+    {
+      "sku": "PD-0234",
+      "title": "65x17-Inch Foldable Non-Slip SUV & High-Bed Dog Ramp",
+      "category": "Mobility / Extra-Long SUV Ramp",
+      "retail_usd": 94.99,
+      "compare_at_usd": 122.0,
+      "net_10_pct_usd": 85.49,
+      "net_15_pct_usd": 80.74,
+      "variant_id": "67873850982633",
+      "product_url": "https://hearthpawhome.com/products/65x17-inch-foldable-non-slip-suv-high-bed-dog-ramp-pd-0234",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67873850982633:1"
+    },
+    {
+      "sku": "PD-0014",
+      "title": "Low-Profile Non-Slip Double Stainless Steel Pet Diner Bowl",
+      "category": "Feeding / Cats & Small Breeds",
+      "retail_usd": 28.99,
+      "compare_at_usd": 37.99,
+      "net_10_pct_usd": 26.09,
+      "net_15_pct_usd": 24.64,
+      "variant_id": "67859392659689",
+      "product_url": "https://hearthpawhome.com/products/non-slip-double-stainless-steel-pet-diner-bowl-pd-0014",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859392659689:1"
+    },
+    {
+      "sku": "PD-0101",
+      "title": "Elevated Dog Feeding Station & Hidden Dry Food Storage Cabinet",
+      "category": "Feeding / Medium Dogs",
+      "retail_usd": 49.99,
+      "compare_at_usd": 63.99,
+      "net_10_pct_usd": 44.99,
+      "net_15_pct_usd": 42.49,
+      "variant_id": "67859396296937",
+      "product_url": "https://hearthpawhome.com/products/pet-feeding-station-with-storage-dog-food-toy-pd-0101",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859396296937:1"
+    },
+    {
+      "sku": "PD-0114",
+      "title": "17-Inch Elevated Double Stainless Steel Dog Feeding Stand",
+      "category": "Feeding / Large & Giant Breeds",
+      "retail_usd": 50.99,
+      "compare_at_usd": 66.0,
+      "net_10_pct_usd": 45.89,
+      "net_15_pct_usd": 43.34,
+      "variant_id": "67859396886761",
+      "product_url": "https://hearthpawhome.com/products/17-inch-elevated-double-stainless-dog-feeding-stand-pd-0114",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859396886761:1"
+    },
+    {
+      "sku": "PD-0028",
+      "title": "Extra-Large Fully Enclosed 304 Stainless Steel Cat Litter Box",
+      "category": "Cat Hygiene / High-Pee & Dog-Proof",
+      "retail_usd": 49.99,
+      "compare_at_usd": 63.99,
+      "net_10_pct_usd": 44.99,
+      "net_15_pct_usd": 42.49,
+      "variant_id": "67861195555049",
+      "product_url": "https://hearthpawhome.com/products/fully-enclosed-stainless-steel-cat-litter-box-pd-0028",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67861195555049:1"
+    },
+    {
+      "sku": "PD-0082",
+      "title": "High-Sided Open-Top 304 Stainless Steel Cat Litter Box",
+      "category": "Cat Hygiene / Hood-Shy Open Pan",
+      "retail_usd": 44.99,
+      "compare_at_usd": 57.99,
+      "net_10_pct_usd": 40.49,
+      "net_15_pct_usd": 38.24,
+      "variant_id": "67861197095145",
+      "product_url": "https://hearthpawhome.com/products/stainless-steel-cat-litter-box-large-open-top-pd-0082",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67861197095145:1"
+    },
+    {
+      "sku": "PD-0004",
+      "title": "Architectural Multi-Level Felt Cat Condo & Scratch Tower",
+      "category": "Apartment Cat Tree / Carpet-Free Felt",
+      "retail_usd": 45.99,
+      "compare_at_usd": 58.99,
+      "net_10_pct_usd": 41.39,
+      "net_15_pct_usd": 39.09,
+      "variant_id": "67861194801385",
+      "product_url": "https://hearthpawhome.com/products/architectural-multi-level-felt-cat-condo-scratch-tower-pd-0004",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67861194801385:1"
+    },
+    {
+      "sku": "PD-0109",
+      "title": "45.7-Inch Solid-Wood 4-Tier Multi-Cat Climbing Tree",
+      "category": "Apartment Cat Tree / Heavy Solid Wood",
+      "retail_usd": 56.99,
+      "compare_at_usd": 73.0,
+      "net_10_pct_usd": 51.29,
+      "net_15_pct_usd": 48.44,
+      "variant_id": "67859396657385",
+      "product_url": "https://hearthpawhome.com/products/modern-heavy-duty-no-drill-4-tier-solid-wood-cat-tree-pd-0109",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859396657385:1"
+    },
+    {
+      "sku": "PD-0100",
+      "title": "Widened Support-Plate Car Dog Bed & Rear-Seat Extender",
+      "category": "SUV Travel / Rigid Extender",
+      "retail_usd": 61.99,
+      "compare_at_usd": 80.0,
+      "net_10_pct_usd": 55.79,
+      "net_15_pct_usd": 52.69,
+      "variant_id": "67859396264169",
+      "product_url": "https://hearthpawhome.com/products/widened-support-plate-car-dog-bed-rear-seat-pd-0100",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859396264169:1"
+    },
+    {
+      "sku": "PD-0262",
+      "title": "58-Inch Hard-Bottom Dog Car Backseat Extender & Waterproof Hammock",
+      "category": "SUV Travel / Full-Width Hard Bottom",
+      "retail_usd": 53.99,
+      "compare_at_usd": 69.0,
+      "net_10_pct_usd": 48.59,
+      "net_15_pct_usd": 45.89,
+      "variant_id": "68113850597609",
+      "product_url": "https://hearthpawhome.com/products/58-inch-hard-bottom-dog-car-backseat-extender-hammock-pd-0262",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/68113850597609:1"
+    },
+    {
+      "sku": "PD-0003",
+      "title": "Waterproof Reversible Couch & Bed Protector Throw",
+      "category": "Sofa Protection / Muddy-Paw Shield",
+      "retail_usd": 32.99,
+      "compare_at_usd": 42.99,
+      "net_10_pct_usd": 29.69,
+      "net_15_pct_usd": 28.04,
+      "variant_id": "67859392135401",
+      "product_url": "https://hearthpawhome.com/products/waterproof-reversible-couch-bed-protector-throw-pd-0003",
+      "preloaded_cart_url": "https://hearthpawhome.com/cart/67859392135401:1"
+    }
+  ]
+}

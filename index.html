@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Ramp Slope-Angle, Pet Stairs &amp; Elevated Bowl Height Calculator | Hearth &amp; Paw</title>
+<meta name="description" content="Free open-source veterinary geometry calculator: compute dog ramp incline degrees (arcsin H/L), elevated dog bowl heights (Shoulder - 5.5 in), and odor-proof cat setups.">
+<meta property="og:title" content="Pet Ramp Slope-Angle &amp; Ergonomic Bowl Height Calculator">
+<meta property="og:description" content="Calculate joint-safe ramp angles for IVDD dogs and SUV tailgates, plus standing-shoulder elevated bowl heights in 15 seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hearthpawhome.com/pages/pet-fit-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pet Ramp Slope-Angle & Ergonomic Bowl Height Calculator",
+  "url": "https://hearthpawhome.com/pages/pet-fit-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires HTML5",
+  "description": "Zero-dependency interactive calculator for dog ramp incline angles theta = arcsin(H / L), elevated dog bowl rim height (Shoulder - 5.5 in), and non-porous 304 stainless steel cat housing.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "Hearth & Paw",
+    "url": "https://hearthpawhome.com"
+  }
+}
+</script>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --surface-muted: #f3efe8;
+    --border: #ddd5c9;
+    --ink: #1f1c19;
+    --muted: #5a534b;
+    --forest: #214e37;
+    --forest-dark: #183b29;
+    --forest-soft: #eaf3ee;
+    --brick: #b93829;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+  }
+  a { color: var(--forest); }
+  .wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--forest);
+    background: var(--forest-soft);
+    border: 1px solid rgba(33, 78, 55, 0.2);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: clamp(1.6rem, 3.2vw, 2.35rem);
+    line-height: 1.18;
+    margin: 0 0 10px;
+    letter-spacing: -0.015em;
+  }
+  .sub {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 0.97rem;
+    color: var(--muted);
+  }
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 1.25rem 0;
+  }
+  .tab-btn {
+    border: 1px solid #d4ccc0;
+    background: var(--surface);
+    color: var(--ink);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.89rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .tab-btn:hover { border-color: var(--forest); }
+  .tab-btn.is-active {
+    background: var(--forest);
+    border-color: var(--forest);
+    color: #ffffff;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.35rem;
+    box-shadow: 0 4px 18px rgba(31, 28, 25, 0.04);
+  }
+  .presets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.1rem;
+  }
+  .preset-lbl {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .chip {
+    border: 1px solid #d5cdc1;
+    background: var(--bg);
+    color: var(--forest);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .chip:hover { background: var(--forest-soft); border-color: var(--forest); }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1.35rem;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .grid { grid-template-columns: 1fr; }
+    .panel { padding: 1rem; }
+  }
+  .field {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .flabel {
+    display: block;
+    font-size: 0.91rem;
+    margin-bottom: 6px;
+  }
+  .field input[type="range"] {
+    width: 100%;
+    accent-color: var(--forest);
+    cursor: pointer;
+  }
+  .fhint {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc4b8;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 0.89rem;
+  }
+  .svg-box, .formula-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 0.5rem;
+  }
+  .svg-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+  .dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  .dot-bad { background: var(--brick); }
+  .dot-good { background: var(--forest); }
+  svg.diagram {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .formula-out {
+    margin-top: 6px;
+    font-size: 1.05rem;
+    color: var(--forest);
+  }
+  .result-card {
+    background: var(--surface);
+    border: 1.5px solid var(--forest);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .badge {
+    align-self: flex-start;
+    background: var(--forest);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+  .res-title {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 1.2rem;
+    line-height: 1.28;
+    margin: 0;
+  }
+  .res-why {
+    font-size: 0.9rem;
+    color: #3d3731;
+    margin: 0;
+    line-height: 1.55;
+  }
+  .price-box {
+    background: var(--forest-soft);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .res-price {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--forest-dark);
+  }
+  .res-price del {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-left: 6px;
+  }
+  .res-perk {
+    display: block;
+    font-size: 0.8rem;
+    color: #2f463a;
+    margin-top: 2px;
+  }
+  .btn-primary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    background: var(--forest);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--forest-dark); }
+  .btn-secondary {
+    display: inline-block;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--forest);
+    text-decoration: underline;
+    margin-top: 2px;
+  }
+  .ref-section {
+    margin-top: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem 1.35rem;
+  }
+  .ref-section h2 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 1.28rem;
+    margin: 0 0 8px;
+    color: var(--forest-dark);
+  }
+  .table-scroll { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-top: 8px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  th {
+    background: var(--surface-muted);
+    font-weight: 700;
+  }
+  .foot {
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<main class="wrap" id="hp-pet-fit-calculator">
+  <header class="hero">
+    <span class="eyebrow">Open-Source Veterinary Geometry Tool &middot; MIT License</span>
+    <h1>Pet Ramp Slope-Angle &amp; Ergonomic Height Calculator</h1>
+    <p class="sub">Measure once before buying: compute exact incline angles via <code>theta = arcsin(H / L)</code> for IVDD/senior joints, elevated dog bowl heights (<code>Shoulder - 5.5 in</code>), or odor-proof cat setups in 15 seconds.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sizing Calculator Modes">
+    <button type="button" class="tab-btn is-active" data-hp-tab="ramp" role="tab" aria-selected="true">1. Couch / Bed / SUV Ramp Angle</button>
+    <button type="button" class="tab-btn" data-hp-tab="bowl" role="tab" aria-selected="false">2. Elevated Dog Bowl Height</button>
+    <button type="button" class="tab-btn" data-hp-tab="cat" role="tab" aria-selected="false">3. Cat Litter &amp; Condo Matcher</button>
+  </nav>
+
+  <!-- TAB 1: RAMP & STAIRS ANGLE -->
+  <section class="panel" data-hp-panel="ramp">
+    <div class="presets">
+      <span class="preset-lbl">Quick Presets:</span>
+      <button type="button" class="chip" data-preset-h="17" data-preset-w="14" data-preset-s="senior">14 lb Senior Dachshund + 17" Couch</button>
+      <button type="button" class="chip" data-preset-h="25" data-preset-w="22" data-preset-s="senior">22 lb Frenchie / Cat + 25" Tall Bed</button>
+      <button type="button" class="chip" data-preset-h="29" data-preset-w="75" data-preset-s="senior">75 lb Golden Retriever + 29" SUV</button>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label class="field">
+          <span class="flabel">Sofa, Mattress, or SUV Cargo Height: <strong id="hp-val-h">18 in</strong></span>
+          <input type="range" id="hp-in-h" min="13" max="34" step="1" value="18">
+          <span class="fhint">Standard sofa: 15–19" &middot; Pillow-top bed: 22–27" &middot; SUV tailgate: 26–33"</span>
+        </label>
+
+        <label class="field">
+          <span class="flabel">Pet Body Weight: <strong id="hp-val-w">18 lbs</strong></span>
+          <input type="range" id="hp-in-w" min="5" max="115" step="1" value="18">
+          <span class="fhint">Small/Toy: 5–25 lbs &middot; Medium: 26–45 lbs &middot; Large/Giant: 46–115 lbs</span>
+        </label>
+
+        <label class="field">
+          <span class="flabel">Joint &amp; Spine Profile:</span>
+          <select id="hp-in-s" class="select">
+            <option value="senior" selected>Senior, Arthritic, Short-Legged (Dachshund/Corgi) or IVDD Prevention</option>
+            <option value="adult">Healthy Athletic Adult Dog / Cat</option>
+          </select>
+        </label>
+
+        <div class="svg-box">
+          <div class="svg-legend">
+            <span><i class="dot dot-bad"></i>47" Generic Ramp: <strong id="hp-deg-short">22.5&deg;</strong></span>
+            <span><i class="dot dot-good"></i>Matched Setup: <strong id="hp-deg-good">Gentle 3-Step Wave</strong></span>
+          </div>
+          <svg id="hp-slope-svg" class="diagram" viewBox="0 0 420 150" fill="none" aria-label="Incline geometry comparison diagram">
+            <line x1="16" y1="126" x2="404" y2="126" stroke="#c8bfb2" stroke-width="2"/>
+            <text x="20" y="142" font-size="10.5" fill="#69625a">Floor Level</text>
+            <rect id="hp-svg-sofa" x="320" y="66" width="76" height="60" rx="5" fill="#ece5da" stroke="#857d71" stroke-width="1.5"/>
+            <line id="hp-svg-bad" x1="175" y1="126" x2="320" y2="66" stroke="#b93829" stroke-width="2.4" stroke-dasharray="5 4"/>
+            <line id="hp-svg-good" x1="56" y1="126" x2="320" y2="66" stroke="#214e37" stroke-width="4" stroke-linecap="round"/>
+            <text id="hp-svg-hlabel" x="358" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#1f1c19">18"</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="result-card" id="hp-ramp-result">
+        <span class="badge" id="hp-ramp-badge">BEST JOINT-SAFE MATCH</span>
+        <h2 class="res-title" id="hp-ramp-title">3-Step High-Density Wave Foam Couch Ramp (PD-0165)</h2>
+        <p class="res-why" id="hp-ramp-why"></p>
+        <div class="price-box">
+          <span class="res-price" id="hp-ramp-price">$33.29 in cart <del>$36.99</del></span>
+          <span class="res-perk" id="hp-ramp-perk">Auto Extra 10% Off in Cart (15% Off 2+ Items) + $0.00 Free US Warehouse Shipping (3–7d)</span>
+        </div>
+        <a href="https://hearthpawhome.com/cart/67859399114985:1" id="hp-ramp-cart" target="_blank" rel="noopener" class="btn-primary">Open Pre-Loaded Cart on Hearth &amp; Paw (Auto 10% Off + Free US Shipping)</a>
+        <a href="https://hearthpawhome.com/products/home-pet-dog-wave-ramp-stairs-pd-0165" id="hp-ramp-link" target="_blank" rel="noopener" class="btn-secondary">View Full Photos &amp; Specs on hearthpawhome.com &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: ELEVATED BOWL HEIGHT -->
+  <section class="panel" data-hp-panel="bowl" hidden>
+    <div class="grid">
+      <div>
+        <label class="field">
+          <span class="flabel">Standing Floor-to-Shoulder (Withers) Height: <strong id="hp-val-sh">24 in</strong></span>
+          <input type="range" id="hp-in-sh" min="8" max="31" step="1" value="24">
+          <span class="fhint">Measure vertically from flat floor to the top ridge between your standing dog's front shoulder blades.</span>
+        </label>
+
+        <div class="formula-card">
+          <strong>Ergonomic Formula:</strong> <code>Bowl_Rim_Height = Standing_Shoulder - 5.5 in</code>
+          <div class="formula-out">Ideal Rim Height: <strong id="hp-ideal-rim">18.0 &ndash; 19.0 inches</strong></div>
+        </div>
+
+        <div class="svg-box">
+          <div class="svg-legend">
+            <span>Standing Shoulder Reference: <strong id="hp-bowl-sh-lbl">24 in</strong></span>
+            <span>Recommended Feeder Rim: <strong id="hp-bowl-rim-lbl">17 in Stand</strong></span>
+          </div>
+          <svg id="hp-bowl-svg" class="diagram" viewBox="0 0 420 140" fill="none" aria-label="Elevated bowl rim vs standing shoulder height">
+            <line x1="16" y1="118" x2="404" y2="118" stroke="#c8bfb2" stroke-width="2"/>
+            <line id="hp-svg-shline" x1="30" y1="34" x2="180" y2="34" stroke="#857d71" stroke-width="1.8" stroke-dasharray="4 3"/>
+            <line x1="110" y1="34" x2="110" y2="118" stroke="#857d71" stroke-width="1.5"/>
+            <rect id="hp-svg-stand" x="235" y="64" width="108" height="54" rx="4" fill="#eaf3ee" stroke="#214e37" stroke-width="2"/>
+            <text id="hp-svg-shlabel" x="108" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#5a534b">Withers: 24"</text>
+            <text id="hp-svg-rimlabel" x="289" y="95" text-anchor="middle" font-size="11.5" font-weight="700" fill="#214e37">Rim: ~17"</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <span class="badge">ERGONOMIC FEEDING MATCH</span>
+        <h2 class="res-title" id="hp-bowl-title">17-Inch Elevated Double Stainless Steel Stand (PD-0114)</h2>
+        <p class="res-why" id="hp-bowl-why">For 21–31" large &amp; giant breeds (Goldens, Labs, Shepherds, Danes), floor bowls force deep neck bending and puddle splashes. This true 17-inch stand lifts 304 stainless bowls cleanly to chest height.</p>
+        <div class="price-box">
+          <span class="res-price" id="hp-bowl-price">$45.89 in cart <del>$50.99</del></span>
+          <span class="res-perk" id="hp-bowl-perk">Auto Extra 10% Off in Cart (15% Off 2+ Items) + $0.00 Free US Shipping (3–7d)</span>
+        </div>
+        <a href="https://hearthpawhome.com/cart/67859396886761:1" id="hp-bowl-cart" target="_blank" rel="noopener" class="btn-primary">Open Pre-Loaded Cart on Hearth &amp; Paw (Auto 10% Off + Free US Shipping)</a>
+        <a href="https://hearthpawhome.com/products/17-inch-elevated-double-stainless-dog-feeding-stand-pd-0114" id="hp-bowl-link" target="_blank" rel="noopener" class="btn-secondary">View Dimensions &amp; Specs on hearthpawhome.com &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: CAT LITTER & APARTMENT TOWER MATCHER -->
+  <section class="panel" data-hp-panel="cat" hidden>
+    <div class="grid">
+      <div>
+        <label class="field">
+          <span class="flabel">Primary Indoor Cat Housing Challenge:</span>
+          <select id="hp-in-cat" class="select">
+            <option value="pee_high" selected>Plastic litter ammonia odor + high wall spray / Dog sneaking in</option>
+            <option value="hood_shy">Plastic litter odor, but my cat refuses covered/enclosed hoods</option>
+            <option value="felt_condo">Stop sofa-corner scratching + carpet-free felt condo (1–2 cats &le;18 lbs)</option>
+            <option value="wood_tree">Heavy-duty 45.7" vertical solid-wood tree for 2–3 adult cats (zero wall drilling)</option>
+          </select>
+        </label>
+        <div class="formula-card">
+          <strong>Engineering Note:</strong> Non-porous 304 stainless steel prevents hairline claw grooves from sealing in uric acid odor, while dense acoustic felt and solid timber eliminate carpet fuzz on hardwood floors.
+        </div>
+      </div>
+
+      <div class="result-card">
+        <span class="badge">APARTMENT CAT MATCH</span>
+        <h2 class="res-title" id="hp-cat-title">Extra-Large Fully Enclosed 304 Stainless Steel Litter Box (PD-0028)</h2>
+        <p class="res-why" id="hp-cat-why">Non-porous 304 stainless steel eliminates scratched-plastic ammonia smell permanently, while the inward-overlapping ABS hood stops high-pee seam leaks and blocks household dogs.</p>
+        <div class="price-box">
+          <span class="res-price" id="hp-cat-price">$44.99 in cart <del>$49.99</del></span>
+          <span class="res-perk" id="hp-cat-perk">Auto Extra 10% Off in Cart (15% Off 2+ Items) + $0.00 Free US Shipping (3–7d)</span>
+        </div>
+        <a href="https://hearthpawhome.com/cart/67861195555049:1" id="hp-cat-cart" target="_blank" rel="noopener" class="btn-primary">Open Pre-Loaded Cart on Hearth &amp; Paw (Auto 10% Off + Free US Shipping)</a>
+        <a href="https://hearthpawhome.com/products/fully-enclosed-stainless-steel-cat-litter-box-pd-0028" id="hp-cat-link" target="_blank" rel="noopener" class="btn-secondary">View Full Specifications on hearthpawhome.com &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATIC CRAWLABLE REFERENCE TABLE -->
+  <section class="ref-section">
+    <h2>Quick Reference Incline Matrix (47-Inch Generic vs. 65-Inch Extended)</h2>
+    <p class="sub" style="margin:0 0 8px;max-width:none;">Formula: <code>theta = arcsin(Height / Length)</code>. Aim for &le; 24&deg; indoors and &lt; 28&deg; on tall SUV bumpers.</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Surface Height</th>
+            <th>47" Short Ramp</th>
+            <th>65" Extended Ramp</th>
+            <th>Recommended US-Stocked Solution (Auto -10% Cart Price)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>16–18" Sofa</td>
+            <td>19.9&deg;–22.5&deg;</td>
+            <td>14.3&deg;–16.1&deg;</td>
+            <td><a href="https://hearthpawhome.com/products/home-pet-dog-wave-ramp-stairs-pd-0165" target="_blank" rel="noopener">3-Step Wave Foam Ramp (PD-0165, $33.29)</a> for &le;45 lb pets; <a href="https://hearthpawhome.com/products/wood-pet-stairs-3-step-dog-for-beds-sofa-pd-0176" target="_blank" rel="noopener">Wood Stairs (PD-0180 / PD-0176, $39.59 / $45.89)</a> for &gt;45 lb dogs</td>
+          </tr>
+          <tr>
+            <td>22–26" High Bed</td>
+            <td>27.9&deg;–33.6&deg;</td>
+            <td>19.8&deg;–23.6&deg;</td>
+            <td><a href="https://hearthpawhome.com/products/cat-tree-tower-stair-steps-with-scratching-post-pd-0088" target="_blank" rel="noopener">25.2" 4-Step Tower (PD-0088, $52.19)</a> for &lt;42 lb pets; <a href="https://hearthpawhome.com/products/wood-pet-stairs-4-step-dog-for-beds-pd-0251" target="_blank" rel="noopener">4-Step Hardwood Stairs (PD-0251, $55.79)</a> for 42+ lb dogs</td>
+          </tr>
+          <tr>
+            <td>28–32" SUV Cargo</td>
+            <td>36.6&deg;–42.9&deg;</td>
+            <td>25.5&deg;–29.5&deg;</td>
+            <td><a href="https://hearthpawhome.com/products/65x17-inch-foldable-non-slip-suv-high-bed-dog-ramp-pd-0234" target="_blank" rel="noopener">65x17" Foldable Non-Slip SUV Ramp (PD-0234, $85.49)</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Built by <a href="https://hearthpawhome.com" target="_blank" rel="noopener">Hearth &amp; Paw</a> &middot; Interactive store edition: <a href="https://hearthpawhome.com/pages/pet-fit-calculator" target="_blank" rel="noopener">hearthpawhome.com/pages/pet-fit-calculator</a></span>
+    <span><a href="https://hearthpawhome.com/pages/llm-product-catalog" target="_blank" rel="noopener">Complete Net-Price Directory</a> &middot; <a href="./data/pet_ergonomics_benchmarks.json">Raw JSON Benchmarks</a></span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var root = document.getElementById('hp-pet-fit-calculator');
+  if (!root) return;
+
+  var tabs = root.querySelectorAll('[data-hp-tab]');
+  var panels = root.querySelectorAll('[data-hp-panel]');
+  tabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-hp-tab');
+      tabs.forEach(function (b) {
+        var active = b.getAttribute('data-hp-tab') === target;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach(function (p) {
+        var match = p.getAttribute('data-hp-panel') === target;
+        if (match) p.removeAttribute('hidden');
+        else p.setAttribute('hidden', 'hidden');
+      });
+    });
+  });
+
+  function calcDeg(h, len) {
+    var ratio = Math.min(0.98, Math.max(0.05, h / len));
+    return Math.round((Math.asin(ratio) * 180 / Math.PI) * 10) / 10;
+  }
+
+  var inH = document.getElementById('hp-in-h');
+  var inW = document.getElementById('hp-in-w');
+  var inS = document.getElementById('hp-in-s');
+
+  function updateRamp() {
+    var h = parseInt(inH.value, 10) || 18;
+    var w = parseInt(inW.value, 10) || 18;
+    var s = inS.value;
+    document.getElementById('hp-val-h').textContent = h + ' in';
+    document.getElementById('hp-val-w').textContent = w + ' lbs';
+
+    var shortDeg = calcDeg(h, 47);
+    var long65Deg = calcDeg(h, 65);
+    document.getElementById('hp-deg-short').textContent = shortDeg + '°' + (shortDeg > 25 ? ' (Steep)' : '');
+
+    var sofaH = Math.round(28 + ((h - 13) / 21) * 74);
+    var sofaY = 126 - sofaH;
+    var sofaEl = document.getElementById('hp-svg-sofa');
+    sofaEl.setAttribute('height', String(sofaH));
+    sofaEl.setAttribute('y', String(sofaY));
+    var lblEl = document.getElementById('hp-svg-hlabel');
+    lblEl.setAttribute('y', String(sofaY + Math.round(sofaH / 2) + 4));
+    lblEl.textContent = h + '"';
+
+    var badLine = document.getElementById('hp-svg-bad');
+    badLine.setAttribute('y2', String(sofaY));
+    badLine.setAttribute('x1', String(Math.max(150, 320 - Math.round(47 * 3.1))));
+    var goodLine = document.getElementById('hp-svg-good');
+    goodLine.setAttribute('y2', String(sofaY));
+
+    var rec;
+    if (h >= 27 && w >= 42) {
+      goodLine.setAttribute('x1', '30');
+      document.getElementById('hp-deg-good').textContent = long65Deg + '° (65" Extra-Long Deck)';
+      rec = {
+        badge: 'SUV & TALL DECK LARGE-DOG MATCH',
+        title: '65x17-Inch Foldable Non-Slip SUV & High-Bed Dog Ramp (PD-0234)',
+        why: 'At ' + h + '" height with a ' + w + ' lb dog, a standard 47" ramp hits a steep ' + shortDeg + '° incline that triggers tailgate refusal. Stretching length to 65 inches drops the slope to ' + long65Deg + '° on a shoulder-wide 17" non-slip ribbed deck.',
+        price: '$85.49 in cart <del>$94.99</del>',
+        vid: '67873850982633',
+        url: 'https://hearthpawhome.com/products/65x17-inch-foldable-non-slip-suv-high-bed-dog-ramp-pd-0234'
+      };
+    } else if (h >= 22 && w >= 42) {
+      goodLine.setAttribute('x1', '68');
+      document.getElementById('hp-deg-good').textContent = '4-Step Solid Wood (High Bed)';
+      rec = {
+        badge: 'HIGH MATTRESS HARDWOOD MATCH',
+        title: '4-Step Foldable Wooden Dog Stairs with Non-Slip Carpet Treads (PD-0251)',
+        why: 'At ' + h + '" bed height and ' + w + ' lbs, soft all-foam ramps sit too short and compress under paw load. Rigid 4-step foldable hardwood reaches tall beds cleanly (if measuring an outdoor SUV bumper, choose 65" ramp PD-0234 for ' + long65Deg + '° climb).',
+        price: '$55.79 in cart <del>$61.99</del>',
+        vid: '68071729234153',
+        url: 'https://hearthpawhome.com/products/wood-pet-stairs-4-step-dog-for-beds-pd-0251'
+      };
+    } else if (h >= 21 && w < 42) {
+      goodLine.setAttribute('x1', '72');
+      document.getElementById('hp-deg-good').textContent = '4 Gentle 6.3" Treads (Zero Wobble)';
+      rec = {
+        badge: 'HIGH BED SMALL-DOG & CAT MATCH',
+        title: '25.2-Inch 4-Step Carpeted Stair Tower with Sisal Posts (PD-0088)',
+        why: 'Standard 3-step foam ramps stop near 18–19 inches—too short for your ' + h + '" mattress. This weighted 4-step tower reaches 25.2" cleanly (~6.3" gentle rise per carpeted tread) with zero wobble.',
+        price: '$52.19 in cart <del>$57.99</del>',
+        vid: '67859395805417',
+        url: 'https://hearthpawhome.com/products/cat-tree-tower-stair-steps-with-scratching-post-pd-0088'
+      };
+    } else if (w > 45 && h < 22) {
+      var useTwoStep = h <= 17;
+      goodLine.setAttribute('x1', '82');
+      document.getElementById('hp-deg-good').textContent = useTwoStep ? 'Rigid 2-Step Wood' : 'Rigid 3-Step Wood';
+      rec = {
+        badge: 'HEAVY-PAW RIGID WOOD MATCH',
+        title: useTwoStep ? 'Foldable Non-Slip Solid Wooden Pet Stairs — 2-Step (PD-0180)' : 'Foldable Non-Slip Solid Wooden Pet Stairs — 3-Step (PD-0176)',
+        why: 'At ' + w + ' lbs, soft all-foam steps deform under heavy weight. Choose rigid foldable hardwood treads for firm joint support up onto ' + h + '" sofas or mid beds, folding flat under furniture when not in use.',
+        price: useTwoStep ? '$39.59 in cart <del>$43.99</del>' : '$45.89 in cart <del>$50.99</del>',
+        vid: useTwoStep ? '67861198405865' : '67861198438633',
+        url: 'https://hearthpawhome.com/products/wood-pet-stairs-3-step-dog-for-beds-sofa-pd-0176'
+      };
+    } else {
+      goodLine.setAttribute('x1', '56');
+      document.getElementById('hp-deg-good').textContent = 'Soft Wave Slope (IVDD / Senior Safe)';
+      rec = {
+        badge: s === 'senior' ? 'IVDD & SENIOR COUCH HERO PICK' : 'SHIN-SAFE LIVING ROOM MATCH',
+        title: '3-Step High-Density Rebound Wave Foam Couch Ramp (PD-0165)',
+        why: 'Ideal for ' + w + ' lb pets climbing onto a ' + h + '" couch: continuous curved wave foam eliminates sharp 90° cliff steps, grips hardwood cleanly, and avoids shin bruises. Allow 24–36h full expansion after unboxing.',
+        price: '$33.29 in cart <del>$36.99</del>',
+        vid: '67859399114985',
+        url: 'https://hearthpawhome.com/products/home-pet-dog-wave-ramp-stairs-pd-0165'
+      };
+    }
+
+    document.getElementById('hp-ramp-badge').textContent = rec.badge;
+    document.getElementById('hp-ramp-title').textContent = rec.title;
+    document.getElementById('hp-ramp-why').textContent = rec.why;
+    document.getElementById('hp-ramp-price').innerHTML = rec.price;
+    document.getElementById('hp-ramp-cart').setAttribute('href', 'https://hearthpawhome.com/cart/' + rec.vid + ':1');
+    document.getElementById('hp-ramp-link').setAttribute('href', rec.url);
+  }
+
+  inH.addEventListener('input', updateRamp);
+  inW.addEventListener('input', updateRamp);
+  inS.addEventListener('change', updateRamp);
+
+  root.querySelectorAll('[data-preset-h]').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      inH.value = chip.getAttribute('data-preset-h');
+      inW.value = chip.getAttribute('data-preset-w');
+      inS.value = chip.getAttribute('data-preset-s');
+      updateRamp();
+    });
+  });
+
+  var inSh = document.getElementById('hp-in-sh');
+  function updateBowl() {
+    var sh = parseInt(inSh.value, 10) || 24;
+    document.getElementById('hp-val-sh').textContent = sh + ' in';
+    var low = Math.max(2, sh - 6);
+    var high = Math.max(3, sh - 5);
+    document.getElementById('hp-ideal-rim').textContent = low + '.0 – ' + high + '.0 inches';
+    document.getElementById('hp-bowl-sh-lbl').textContent = sh + ' in';
+
+    var b;
+    var rimIn;
+    if (sh >= 21) {
+      rimIn = 17;
+      b = {
+        title: '17-Inch Elevated Double Stainless Steel Dog Feeding Stand (PD-0114)',
+        why: 'With a ' + sh + '" shoulder height, your dog needs a ' + low + '–' + high + '" bowl height to prevent deep cervical hunching and floor splashes. This rigid 17" metal stand brings dual 304 stainless bowls cleanly to chest height.',
+        price: '$45.89 in cart <del>$50.99</del>',
+        vid: '67859396886761',
+        url: 'https://hearthpawhome.com/products/17-inch-elevated-double-stainless-dog-feeding-stand-pd-0114',
+        rimText: '17 in Stand'
+      };
+    } else if (sh >= 14) {
+      rimIn = 12;
+      b = {
+        title: 'Elevated Dog Feeding Station & Hidden Dry Food Storage Cabinet (PD-0101)',
+        why: 'At ' + sh + '" shoulder height, medium breeds dine comfortably at mid-rise elevation (' + low + '–' + high + '" ideal rim) while dry kibble stays sealed right below.',
+        price: '$44.99 in cart <del>$49.99</del>',
+        vid: '67859396296937',
+        url: 'https://hearthpawhome.com/products/pet-feeding-station-with-storage-dog-food-toy-pd-0101',
+        rimText: 'Mid-Rise Station (~10–14")'
+      };
+    } else {
+      rimIn = 4;
+      b = {
+        title: 'Low-Profile Non-Slip Double Stainless Steel Pet Diner Bowl (PD-0014)',
+        why: 'At ' + sh + '" shoulder height (cats & small breeds under ~20 lbs), tall stands force awkward chin tilting upward. A splash-rimmed 304 stainless low diner protects natural spine posture.',
+        price: '$26.09 in cart <del>$28.99</del>',
+        vid: '67859392659689',
+        url: 'https://hearthpawhome.com/products/non-slip-double-stainless-steel-pet-diner-bowl-pd-0014',
+        rimText: 'Low-Profile (2–4")'
+      };
+    }
+
+    document.getElementById('hp-bowl-rim-lbl').textContent = b.rimText;
+    var shPx = Math.round(24 + ((sh - 8) / 23) * 66);
+    var shY = 118 - shPx;
+    document.getElementById('hp-svg-shline').setAttribute('y1', String(shY));
+    document.getElementById('hp-svg-shline').setAttribute('y2', String(shY));
+    document.getElementById('hp-svg-shlabel').setAttribute('y', String(Math.max(14, shY - 7)));
+    document.getElementById('hp-svg-shlabel').textContent = 'Withers: ' + sh + '"';
+
+    var rimPx = Math.max(16, Math.round(14 + (rimIn / 22) * 56));
+    var rimY = 118 - rimPx;
+    var standEl = document.getElementById('hp-svg-stand');
+    standEl.setAttribute('y', String(rimY));
+    standEl.setAttribute('height', String(rimPx));
+    document.getElementById('hp-svg-rimlabel').setAttribute('y', String(rimY + Math.round(rimPx / 2) + 4));
+    document.getElementById('hp-svg-rimlabel').textContent = 'Rim: ~' + rimIn + '"';
+
+    document.getElementById('hp-bowl-title').textContent = b.title;
+    document.getElementById('hp-bowl-why').textContent = b.why;
+    document.getElementById('hp-bowl-price').innerHTML = b.price;
+    document.getElementById('hp-bowl-cart').setAttribute('href', 'https://hearthpawhome.com/cart/' + b.vid + ':1');
+    document.getElementById('hp-bowl-link').setAttribute('href', b.url);
+  }
+  inSh.addEventListener('input', updateBowl);
+
+  var inCat = document.getElementById('hp-in-cat');
+  var catMap = {
+    pee_high: {
+      title: 'Extra-Large Fully Enclosed 304 Stainless Steel Litter Box (PD-0028)',
+      why: 'Non-porous 304 stainless steel eliminates scratched-plastic ammonia smell permanently, while the inward-overlapping ABS hood stops high-pee seam leaks and blocks household dogs.',
+      price: '$44.99 in cart <del>$49.99</del>',
+      vid: '67861195555049',
+      url: 'https://hearthpawhome.com/products/fully-enclosed-stainless-steel-cat-litter-box-pd-0028'
+    },
+    hood_shy: {
+      title: 'High-Sided Open-Top 304 Stainless Steel Cat Litter Box (PD-0082)',
+      why: 'Gives hood-shy or large cats 360-degree open sightlines while a tall snap-on splash rim stops kicked litter scatter and brushed steel cuts scooping friction.',
+      price: '$40.49 in cart <del>$44.99</del>',
+      vid: '67861197095145',
+      url: 'https://hearthpawhome.com/products/stainless-steel-cat-litter-box-large-open-top-pd-0082'
+    },
+    felt_condo: {
+      title: 'Architectural Multi-Level Felt Cat Condo & Scratch Tower (PD-0004)',
+      why: 'Zero glued faux-fur carpet crumbs on hardwood: dense acoustic felt caves + vertical scratch panels lint-roll hair-free in 10 seconds inside a crisp 14.6" x 14.6" footprint.',
+      price: '$41.39 in cart <del>$45.99</del>',
+      vid: '67861194801385',
+      url: 'https://hearthpawhome.com/products/architectural-multi-level-felt-cat-condo-scratch-tower-pd-0004'
+    },
+    wood_tree: {
+      title: '45.7-Inch Solid-Wood 4-Tier Multi-Cat Climbing Tree (PD-0109)',
+      why: 'Freestanding weighted solid-wood platforms support 2–3 energetic adult cats without wall drilling or shedding carpet fuzz.',
+      price: '$51.29 in cart <del>$56.99</del>',
+      vid: '67859396657385',
+      url: 'https://hearthpawhome.com/products/modern-heavy-duty-no-drill-4-tier-solid-wood-cat-tree-pd-0109'
+    }
+  };
+  inCat.addEventListener('change', function () {
+    var c = catMap[inCat.value] || catMap.pee_high;
+    document.getElementById('hp-cat-title').textContent = c.title;
+    document.getElementById('hp-cat-why').textContent = c.why;
+    document.getElementById('hp-cat-price').innerHTML = c.price;
+    document.getElementById('hp-cat-cart').setAttribute('href', 'https://hearthpawhome.com/cart/' + c.vid + ':1');
+    document.getElementById('hp-cat-link').setAttribute('href', c.url);
+  });
+
+  updateRamp();
+  updateBowl();
+})();
+</script>
+</body>
+</html>
