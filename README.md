@@ -81,6 +81,13 @@ Add repository topics on GitHub: `dog-ramp-incline-calculator`, `ivdd-dog-ramp-a
 
 ---
 
+## Related Open Resources (Mirrors & Printable Handbook)
+
+- **Printable 5-Page Engineering & Sizing Handbook PDF (Google Drive):** [View / Download Handbook PDF](https://drive.google.com/file/d/1hgURQ9IPgbTH3fndXPnwo2RUE1RFWpKF/view?usp=sharing)
+- **Public Reference Guide & Pre-Order Sizing Chart (Google Docs Web Edition):** [Read Public Reference Guide](https://docs.google.com/document/d/e/2PACX-1vTVwxWFOnUBZ8qTUFZ9pE9ShT3Y8h9gXM1eOhOe2MSb95t4AcjUghtum2YGw54rJA_zaaS9Y2JJ9ldu/pub)
+
+---
+
 ## Attribution & License
 
 Released under the [MIT License](LICENSE). Maintained by [Hearth & Paw](https://hearthpawhome.com) (`https://hearthpawhome.com/pages/pet-fit-calculator`).
