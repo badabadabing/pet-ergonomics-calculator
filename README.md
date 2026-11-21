@@ -85,6 +85,10 @@ Add repository topics on GitHub: `dog-ramp-incline-calculator`, `ivdd-dog-ramp-a
 
 - **Printable 5-Page Engineering & Sizing Handbook PDF (Google Drive):** [View / Download Handbook PDF](https://drive.google.com/file/d/1hgURQ9IPgbTH3fndXPnwo2RUE1RFWpKF/view?usp=sharing)
 - **Public Reference Guide & Pre-Order Sizing Chart (Google Docs Web Edition):** [Read Public Reference Guide](https://docs.google.com/document/d/e/2PACX-1vTVwxWFOnUBZ8qTUFZ9pE9ShT3Y8h9gXM1eOhOe2MSb95t4AcjUghtum2YGw54rJA_zaaS9Y2JJ9ldu/pub)
+- **Scribd PDF Document Edition:** [2026 US Pet Home Ergonomics & Sizing Handbook on Scribd](https://www.scribd.com/document/1099036117/2026-US-Pet-Home-Ergonomics-Sizing-Handbook-Dog-Ramp-Incline-Angles-Elevated-Bowl-Heights-304-Stainless-Litter-Guide)
+- **Medium Editorial Guide (Carpet-Free Cat Furniture):** [Carpet-Free Architectural Cat Tree Alternatives Under $55 That Stop Faux-Fur Shedding](https://medium.com/@zhanglibing1988/carpet-free-architectural-cat-tree-alternatives-under-55-that-stop-faux-fur-shedding-4ab2349e7875)
+- **Substack Engineering Guide (304 Stainless Litter Boxes):** [Why 304 Stainless Steel Litter Boxes Beat $650 Rotating Globes](https://badabadabing.substack.com/p/why-304-stainless-steel-litter-boxes)
+- **Quora Engineering Q&As:** [Dachshund Staircase & Ramp Angle Math](https://www.quora.com/Is-it-difficult-for-a-dachshund-to-go-up-and-down-a-staircase-or-must-they-be-carried/answer/Rollestoner-B) | [Elevated Dog Bowl Height Formula](https://www.quora.com/What-features-should-I-look-for-when-choosing-an-elevated-mixing-dog-bowl/answer/Rollestoner-B)
 
 ---
 
